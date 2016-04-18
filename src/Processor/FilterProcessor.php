@@ -1,7 +1,7 @@
 <?php
 
 namespace ViewComponents\Eloquent\Processor;
-
+use DateTime;
 use Illuminate\Database\Eloquent\Builder;
 use ViewComponents\ViewComponents\Data\Operation\FilterOperation;
 use ViewComponents\ViewComponents\Data\Operation\OperationInterface;
@@ -32,6 +32,12 @@ class FilterProcessor implements ProcessorInterface
                 $operator = FilterOperation::OPERATOR_LIKE;
                 $value = '%' . $value . '%';
                 break;
+
+            case FilterOperation::OPERATOR_DATE:
+              $operator = FilterOperation::OPERATOR_GTE;
+              $src->where($field, FilterOperation::OPERATOR_LTE, new DateTime($value.'23:59:59.999999'));
+              $value = new DateTime($value);
+             break;     
         }
         $src->where($field, $operator, $value);
         return $src;
