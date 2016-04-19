@@ -55,5 +55,5 @@
         "source": "https://github.com/view-components/eloquent-data-processing",
         "issues": "https://github.com/view-components/eloquent-data-processing/issues"
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
